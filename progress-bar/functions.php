@@ -7,6 +7,11 @@
  * @package WP_Progress_Bar
  */
 
+// Prevent direct access.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Brightness.
  * Calculates a brighter or darker color based on the hex value given.
@@ -136,8 +141,10 @@ function wppb_check_pos( $progress ) {
  */
 function wppb_get_progress_bar( $location = false, $text = false, $progress = '', $option = false, $width = '', $fullwidth = false, $color = false, $gradient = false, $gradient_end = false ) {
 	/*
-	 * Sanitize user input. 
-	 * This would be better handled as we're outputting the variables. We're pre-escaping here for convenience, but need to remember to not escape again later inside the strings.
+	 * Sanitize user input.
+	 * This would be better handled as we're outputting the variables. We're
+	 * pre-escaping here for convenience, but need to remember to not escape
+	 * again later inside the strings.
 	 */
 	$location = isset( $location ) ? esc_attr( sanitize_html_class( $location ) ) : $location;
 	$text_exists = ! is_bool( $text ) && trim( $text ) !== '';
@@ -157,7 +164,7 @@ function wppb_get_progress_bar( $location = false, $text = false, $progress = ''
 
 	// Throw an exception if $progress or $width are empty.
 	try {
-		$message = esc_html__( 'You must pass at least a progress value to wppb_get_progress_bar.', 'wp-progress-bar' );
+		$message = esc_html__( 'You must pass at least a progress value to wppb_get_progress_bar.', 'progress-bar' );
 
 		/*
 		 * If $progress is empty, throw an exception. This is because this
